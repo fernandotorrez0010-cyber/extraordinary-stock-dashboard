@@ -101,7 +101,7 @@ export function EmptyState({ icon: Icon, title, description }) {
 
 export function PageHeader({ title, subtitle, action }) {
   return (
-    <div className="page-header flex items-start justify-between">
+    <div className="page-header flex flex-col gap-5 lg:flex-row items-start justify-between">
       <div>
         <h1 className="section-title">{title}</h1>
         {subtitle && <p className="section-subtitle">{subtitle}</p>}
