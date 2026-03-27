@@ -42,23 +42,27 @@ export default function LoginPage() {
         </div>
         <div className="relative z-10 max-w-md">
           <div className="flex items-center gap-3 mb-6">
-            <img src='/logo.png' alt='logo' height={250} width={250}/>
+            <img src="/logo.png" alt="logo" height={250} width={250} />
           </div>
           <h2 className="text-4xl font-bold text-slate-100 leading-tight mb-4">
-            Your money,<br />
+            Your money,
+            <br />
             <span className="text-green-400">professionally managed.</span>
           </h2>
           <p className="text-slate-500 text-lg mb-10">
-            We trade on your behalf. Watch your portfolio grow with expert-managed investments.
+            We trade on your behalf. Watch your portfolio grow with
+            expert-managed investments.
           </p>
           <div className="grid grid-cols-3 gap-4">
             {[
-              { label: 'Active Investors', value: '12,400+' },
-              { label: 'Avg. Monthly ROI', value: '8.4%' },
-              { label: 'Assets Managed', value: '$48M+' },
-            ].map(stat => (
+              { label: "Active Investors", value: "12,400+" },
+              { label: "Avg. Monthly ROI", value: "8.4%" },
+              { label: "Assets Managed", value: "$48M+" },
+            ].map((stat) => (
               <div key={stat.label} className="card p-4 text-center">
-                <p className="text-xl font-bold text-green-400 font-mono">{stat.value}</p>
+                <p className="text-xl font-bold text-green-400 font-mono">
+                  {stat.value}
+                </p>
                 <p className="text-xs text-slate-500 mt-1">{stat.label}</p>
               </div>
             ))}
@@ -70,59 +74,87 @@ export default function LoginPage() {
       <div className="flex-1 lg:max-w-md flex items-center justify-center p-6 bg-[#0d1018]">
         <div className="w-full max-w-sm">
           <div className="flex items-center gap-2 mb-8 lg:hidden">
-            <TrendingUp size={22} className="text-green-400" />
-            <span className="font-bold text-lg">TradePro</span>
+            <img src="/logo.png" alt="logo" height={250} width={250} />
           </div>
 
-          <h1 className="text-2xl font-bold text-slate-100 mb-1">Welcome back</h1>
+          <h1 className="text-2xl font-bold text-slate-100 mb-1">
+            Welcome back
+          </h1>
           <p className="text-slate-500 text-sm mb-8">Sign in to your account</p>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">Email</label>
+              <label className="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">
+                Email
+              </label>
               <input
                 type="email"
                 className="input-field"
                 placeholder="you@example.com"
                 value={form.email}
-                onChange={e => setForm(p => ({ ...p, email: e.target.value }))}
+                onChange={(e) =>
+                  setForm((p) => ({ ...p, email: e.target.value }))
+                }
                 required
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">Password</label>
+              <label className="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">
+                Password
+              </label>
               <div className="relative">
                 <input
-                  type={show ? 'text' : 'password'}
+                  type={show ? "text" : "password"}
                   className="input-field pr-11"
                   placeholder="••••••••"
                   value={form.password}
-                  onChange={e => setForm(p => ({ ...p, password: e.target.value }))}
+                  onChange={(e) =>
+                    setForm((p) => ({ ...p, password: e.target.value }))
+                  }
                   required
                 />
-                <button type="button" onClick={() => setShow(v => !v)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300">
+                <button
+                  type="button"
+                  onClick={() => setShow((v) => !v)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300"
+                >
                   {show ? <EyeOff size={17} /> : <Eye size={17} />}
                 </button>
               </div>
             </div>
 
             <div className="flex justify-end">
-              <Link to="/forgot-password" className="text-xs text-green-400 hover:text-green-300">Forgot password?</Link>
+              <Link
+                to="/forgot-password"
+                className="text-xs text-green-400 hover:text-green-300"
+              >
+                Forgot password?
+              </Link>
             </div>
 
-            <button type="submit" disabled={loading} className="btn-primary w-full">
+            <button
+              type="submit"
+              disabled={loading}
+              className="btn-primary w-full"
+            >
               {loading ? (
                 <div className="w-5 h-5 rounded-full border-2 border-black/30 border-t-black animate-spin" />
               ) : (
-                <>Sign In <ArrowRight size={17} /></>
+                <>
+                  Sign In <ArrowRight size={17} />
+                </>
               )}
             </button>
           </form>
 
           <p className="text-center text-sm text-slate-500 mt-6">
-            Don't have an account?{' '}
-            <Link to="/register" className="text-green-400 hover:text-green-300 font-medium">Create one</Link>
+            Don't have an account?{" "}
+            <Link
+              to="/register"
+              className="text-green-400 hover:text-green-300 font-medium"
+            >
+              Create one
+            </Link>
           </p>
         </div>
       </div>

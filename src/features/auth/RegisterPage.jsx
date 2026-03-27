@@ -47,16 +47,20 @@ export default function RegisterPage() {
         </div>
         <div className="relative z-10 max-w-md">
           <div className="flex items-center gap-3 mb-6">
-            <img src='/logo.png' alt='logo' height={250} width={250}/>
+            <img src="/logo.png" alt="logo" height={250} width={250} />
           </div>
           <h2 className="text-4xl font-bold text-slate-100 leading-tight mb-6">
-            Start earning<br />
+            Start earning
+            <br />
             <span className="text-green-400">from day one.</span>
           </h2>
           <div className="space-y-3">
-            {perks.map(p => (
+            {perks.map((p) => (
               <div key={p} className="flex items-center gap-3">
-                <CheckCircle size={18} className="text-green-400 flex-shrink-0" />
+                <CheckCircle
+                  size={18}
+                  className="text-green-400 flex-shrink-0"
+                />
                 <span className="text-slate-400 text-sm">{p}</span>
               </div>
             ))}
@@ -67,54 +71,122 @@ export default function RegisterPage() {
       <div className="flex-1 lg:max-w-md flex items-center justify-center p-6 bg-[#0d1018]">
         <div className="w-full max-w-sm">
           <div className="flex items-center gap-2 mb-8 lg:hidden">
-            <TrendingUp size={22} className="text-green-400" />
-            <span className="font-bold text-lg">TradePro</span>
+            <img src="/logo.png" alt="logo" height={250} width={250} />
           </div>
 
-          <h1 className="text-2xl font-bold text-slate-100 mb-1">Create account</h1>
-          <p className="text-slate-500 text-sm mb-8">Start your investment journey today</p>
+          <h1 className="text-2xl font-bold text-slate-100 mb-1">
+            Create account
+          </h1>
+          <p className="text-slate-500 text-sm mb-8">
+            Start your investment journey today
+          </p>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">Full Name</label>
-              <input className="input-field" placeholder="John Doe" value={form.name}
-                onChange={e => setForm(p => ({ ...p, name: e.target.value }))} required />
+              <label className="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">
+                Full Name
+              </label>
+              <input
+                className="input-field"
+                placeholder="John Doe"
+                value={form.name}
+                onChange={(e) =>
+                  setForm((p) => ({ ...p, name: e.target.value }))
+                }
+                required
+              />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">Email</label>
-              <input type="email" className="input-field" placeholder="you@example.com" value={form.email}
-                onChange={e => setForm(p => ({ ...p, email: e.target.value }))} required />
+              <label className="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">
+                Email
+              </label>
+              <input
+                type="email"
+                className="input-field"
+                placeholder="you@example.com"
+                value={form.email}
+                onChange={(e) =>
+                  setForm((p) => ({ ...p, email: e.target.value }))
+                }
+                required
+              />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">Password</label>
+              <label className="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">
+                Password
+              </label>
               <div className="relative">
-                <input type={show ? 'text' : 'password'} className="input-field pr-11" placeholder="Min 6 characters"
-                  value={form.password} onChange={e => setForm(p => ({ ...p, password: e.target.value }))} required />
-                <button type="button" onClick={() => setShow(v => !v)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500">
+                <input
+                  type={show ? "text" : "password"}
+                  className="input-field pr-11"
+                  placeholder="Min 6 characters"
+                  value={form.password}
+                  onChange={(e) =>
+                    setForm((p) => ({ ...p, password: e.target.value }))
+                  }
+                  required
+                />
+                <button
+                  type="button"
+                  onClick={() => setShow((v) => !v)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500"
+                >
                   {show ? <EyeOff size={17} /> : <Eye size={17} />}
                 </button>
               </div>
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">Confirm Password</label>
-              <input type="password" className="input-field" placeholder="••••••••"
-                value={form.confirm} onChange={e => setForm(p => ({ ...p, confirm: e.target.value }))} required />
+              <label className="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">
+                Confirm Password
+              </label>
+              <input
+                type="password"
+                className="input-field"
+                placeholder="••••••••"
+                value={form.confirm}
+                onChange={(e) =>
+                  setForm((p) => ({ ...p, confirm: e.target.value }))
+                }
+                required
+              />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">Referral Code (optional)</label>
-              <input className="input-field" placeholder="XXXXXXXX"
-                value={form.referral} onChange={e => setForm(p => ({ ...p, referral: e.target.value }))} />
+              <label className="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">
+                Referral Code (optional)
+              </label>
+              <input
+                className="input-field"
+                placeholder="XXXXXXXX"
+                value={form.referral}
+                onChange={(e) =>
+                  setForm((p) => ({ ...p, referral: e.target.value }))
+                }
+              />
             </div>
 
-            <button type="submit" disabled={loading} className="btn-primary w-full mt-2">
-              {loading ? <div className="w-5 h-5 rounded-full border-2 border-black/30 border-t-black animate-spin" /> : <>Create Account <ArrowRight size={17} /></>}
+            <button
+              type="submit"
+              disabled={loading}
+              className="btn-primary w-full mt-2"
+            >
+              {loading ? (
+                <div className="w-5 h-5 rounded-full border-2 border-black/30 border-t-black animate-spin" />
+              ) : (
+                <>
+                  Create Account <ArrowRight size={17} />
+                </>
+              )}
             </button>
           </form>
 
           <p className="text-center text-sm text-slate-500 mt-6">
-            Already have an account?{' '}
-            <Link to="/login" className="text-green-400 hover:text-green-300 font-medium">Sign in</Link>
+            Already have an account?{" "}
+            <Link
+              to="/login"
+              className="text-green-400 hover:text-green-300 font-medium"
+            >
+              Sign in
+            </Link>
           </p>
         </div>
       </div>
