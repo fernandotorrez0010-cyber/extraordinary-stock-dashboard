@@ -38,6 +38,7 @@ import AdminTransactionsPage from './features/admin/AdminTransactionsPage';
 import AdminKYCPage from './features/admin/AdminKYCPage';
 import AdminTicketsPage from './features/admin/AdminTicketsPage';
 import AdminNotificationsPage from './features/admin/AdminNotificationsPage';
+import AdminCryptoMethodsPage from './features/admin/AdminCryptoMethodsPage';
 
 // Guards
 import ProtectedRoute from './components/ProtectedRoute';
@@ -93,6 +94,7 @@ export default function App() {
               <Route path="kyc" element={<AdminKYCPage />} />
               <Route path="tickets" element={<AdminTicketsPage />} />
               <Route path="notifications" element={<AdminNotificationsPage />} />
+              <Route path='crypto-methods' element={<AdminCryptoMethodsPage/>}/>
             </Route>
 
             <Route path="*" element={<Navigate to="/login" replace />} />

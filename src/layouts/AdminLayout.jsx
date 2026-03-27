@@ -4,7 +4,8 @@ import { Outlet, NavLink, useNavigate, useLocation } from 'react-router-dom';
 import {
   LayoutDashboard, Users, TrendingUp, BarChart2, ArrowDownCircle,
   ArrowUpCircle, Receipt, FileCheck, MessageSquare, Bell, Shield,
-  ChevronLeft, Menu, X, LogOut
+  ChevronLeft, Menu, X, LogOut,
+  Coins
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { logoutUser } from '../firebase/authService';
@@ -22,6 +23,7 @@ const adminNav = [
   { to: '/admin/kyc', icon: FileCheck, label: 'KYC' },
   { to: '/admin/tickets', icon: MessageSquare, label: 'Tickets' },
   { to: '/admin/notifications', icon: Bell, label: 'Notifications' },
+  { to: '/admin/crypto-methods', icon: Coins, label: 'Deposit Methods' },
 ];
 
 const titles = {

@@ -297,3 +297,21 @@ export const assignProfit = async (userId, amount, note = '') => {
   });
   await batch.commit();
 };
+
+// ─── CRYPTO DEPOSIT METHODS ───────────────────────────────────────────────────
+export const getCryptoMethods = async () => {
+  const snap = await getDocs(collection(db, 'cryptoMethods'));
+  return snap.docs.map(d => ({ id: d.id, ...d.data() }));
+};
+
+export const subscribeCryptoMethods = (cb) =>
+  onSnapshot(collection(db, 'cryptoMethods'), snap =>
+    cb(snap.docs.map(d => ({ id: d.id, ...d.data() }))));
+
+export const saveCryptoMethod = (id, data) =>
+  id
+    ? updateDoc(doc(db, 'cryptoMethods', id), data)
+    : addDoc(collection(db, 'cryptoMethods'), { ...data, createdAt: serverTimestamp() });
+
+export const deleteCryptoMethod = (id) =>
+  deleteDoc(doc(db, 'cryptoMethods', id));

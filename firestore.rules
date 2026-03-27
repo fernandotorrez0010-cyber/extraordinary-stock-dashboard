@@ -89,5 +89,10 @@ service cloud.firestore {
       allow create: if isAdmin();
       allow update: if isAdmin();
     }
+
+    match /cryptoMethods/{id} {
+      allow read: if isAuth();
+      allow write: if isAdmin();
+    }
   }
 }
