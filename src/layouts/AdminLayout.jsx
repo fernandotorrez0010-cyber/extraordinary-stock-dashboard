@@ -12,18 +12,18 @@ import { logoutUser } from '../firebase/authService';
 import toast from 'react-hot-toast';
 
 const adminNav = [
-  { to: '/admin', icon: LayoutDashboard, label: 'Dashboard', end: true },
-  { to: '/admin/users', icon: Users, label: 'Users' },
-  { to: '/admin/plans', icon: TrendingUp, label: 'Investment Plans' },
-  { to: '/admin/investments', icon: BarChart2, label: 'Investments' },
-  { to: '/admin/trades', icon: BarChart2, label: 'Trades' },
-  { to: '/admin/deposits', icon: ArrowDownCircle, label: 'Deposits' },
-  { to: '/admin/withdrawals', icon: ArrowUpCircle, label: 'Withdrawals' },
-  { to: '/admin/transactions', icon: Receipt, label: 'Transactions' },
-  { to: '/admin/kyc', icon: FileCheck, label: 'KYC' },
-  { to: '/admin/tickets', icon: MessageSquare, label: 'Tickets' },
-  { to: '/admin/notifications', icon: Bell, label: 'Notifications' },
-  { to: '/admin/crypto-methods', icon: Coins, label: 'Deposit Methods' },
+  { to: "/admin", icon: LayoutDashboard, label: "Dashboard", end: true },
+  { to: "/admin/users", icon: Users, label: "Users" },
+  { to: "/admin/plans", icon: TrendingUp, label: "Investment Plans" },
+  { to: "/admin/investments", icon: BarChart2, label: "Investments" },
+  { to: "/admin/trades", icon: BarChart2, label: "Trades" },
+  { to: "/admin/deposits", icon: ArrowDownCircle, label: "Deposits" },
+  { to: "/admin/crypto-methods", icon: Coins, label: "Deposit Methods" },
+  { to: "/admin/withdrawals", icon: ArrowUpCircle, label: "Withdrawals" },
+  { to: "/admin/transactions", icon: Receipt, label: "Transactions" },
+  { to: "/admin/kyc", icon: FileCheck, label: "KYC" },
+  { to: "/admin/tickets", icon: MessageSquare, label: "Tickets" },
+  { to: "/admin/notifications", icon: Bell, label: "Notifications" },
 ];
 
 const titles = {
