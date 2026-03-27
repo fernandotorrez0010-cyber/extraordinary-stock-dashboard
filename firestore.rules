@@ -1,0 +1,93 @@
+// firestore.rules
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper: is the caller authenticated?
+    function isAuth() {
+      return request.auth != null;
+    }
+
+    // Helper: is the caller an admin?
+    function isAdmin() {
+      return isAuth() &&
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+
+    // Helper: is the caller the owner of the document?
+    function isOwner(userId) {
+      return isAuth() && request.auth.uid == userId;
+    }
+
+    // ── Users ──────────────────────────────────────────────────────────────
+    match /users/{userId} {
+      allow read: if isOwner(userId) || isAdmin();
+      allow create: if isAuth() && request.auth.uid == userId;
+      allow update: if isOwner(userId) || isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // ── Plans (admin write, all read) ──────────────────────────────────────
+    match /plans/{planId} {
+      allow read: if isAuth();
+      allow write: if isAdmin();
+    }
+
+    // ── Investments ────────────────────────────────────────────────────────
+    match /investments/{invId} {
+      allow read: if isAuth() &&
+        (resource.data.userId == request.auth.uid || isAdmin());
+      allow create: if isAuth() && request.resource.data.userId == request.auth.uid;
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // ── Trades (admin write, all read) ─────────────────────────────────────
+    match /trades/{tradeId} {
+      allow read: if isAuth();
+      allow write: if isAdmin();
+    }
+
+    // ── Transactions ───────────────────────────────────────────────────────
+    match /transactions/{txId} {
+      allow read: if isAuth() &&
+        (resource.data.userId == request.auth.uid || isAdmin());
+      allow create: if isAuth() && request.resource.data.userId == request.auth.uid;
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // ── KYC ───────────────────────────────────────────────────────────────
+    match /kyc/{kycId} {
+      allow read: if isAuth() &&
+        (resource.data.userId == request.auth.uid || isAdmin());
+      allow create: if isAuth() && request.resource.data.userId == request.auth.uid;
+      allow update: if isAuth() && (resource.data.userId == request.auth.uid || isAdmin());
+      allow delete: if isAdmin();
+    }
+
+    // ── Tickets ────────────────────────────────────────────────────────────
+    match /tickets/{ticketId} {
+      allow read: if isAuth() &&
+        (resource.data.userId == request.auth.uid || isAdmin());
+      allow create: if isAuth() && request.resource.data.userId == request.auth.uid;
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // ── Notifications ──────────────────────────────────────────────────────
+    match /notifications/{notifId} {
+      allow read: if isAuth() && resource.data.userId == request.auth.uid;
+      allow create: if isAdmin();
+      allow update: if isAuth() && resource.data.userId == request.auth.uid;
+      allow delete: if isAdmin();
+    }
+
+    // ── Referrals ──────────────────────────────────────────────────────────
+    match /referrals/{refId} {
+      allow read: if isAuth() && resource.data.referrerId == request.auth.uid;
+      allow create: if isAdmin();
+      allow update: if isAdmin();
+    }
+  }
+}
