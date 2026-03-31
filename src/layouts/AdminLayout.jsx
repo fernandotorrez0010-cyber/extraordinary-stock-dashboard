@@ -54,7 +54,10 @@ function AdminSidebar({ onClose }) {
     <div className="flex flex-col h-full bg-[#0d1018] border-r border-slate-800/60 w-[260px]">
       <div className="flex items-center justify-between px-6 py-5 border-b border-slate-800/60">
         <div className="flex items-center gap-3">
-          <img src='/logo.png' alt='logo' height={180} width={180}/>
+          <div className="w-12 h-12 rounded-2xl bg-green-500/10 border border-green-500/20 flex items-center justify-center">
+            <TrendingUp size={24} className="text-green-400" />
+          </div>
+          <span className="text-lg font-bold text-slate-100">Ultimate Global</span>
         </div>
         {onClose && (
           <button onClick={onClose} className="p-1 rounded-lg hover:bg-slate-800 text-slate-500 lg:hidden">

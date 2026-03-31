@@ -42,7 +42,10 @@ export default function LoginPage() {
         </div>
         <div className="relative z-10 max-w-md">
           <div className="flex items-center gap-3 mb-6">
-            <img src="/logo.png" alt="logo" height={250} width={250} />
+            <div className="w-12 h-12 rounded-2xl bg-green-500/10 border border-green-500/20 flex items-center justify-center">
+              <TrendingUp size={24} className="text-green-400" />
+            </div>
+            <span className="text-2xl font-bold text-slate-100">Ultimate Global Stock Marketing</span>
           </div>
           <h2 className="text-4xl font-bold text-slate-100 leading-tight mb-4">
             Your money,
@@ -73,8 +76,11 @@ export default function LoginPage() {
       {/* Right panel */}
       <div className="flex-1 lg:max-w-md flex items-center justify-center p-6 bg-[#0d1018]">
         <div className="w-full max-w-sm">
-          <div className="flex items-center gap-2 mb-8 lg:hidden">
-            <img src="/logo.png" alt="logo" height={250} width={250} />
+          <div className="flex items-center gap-3 mb-8 lg:hidden">
+            <div className="w-12 h-12 rounded-2xl bg-green-500/10 border border-green-500/20 flex items-center justify-center">
+              <TrendingUp size={24} className="text-green-400" />
+            </div>
+            <span className="text-2xl font-bold text-slate-100">Ultimate Global Stock Marketing</span>
           </div>
 
           <h1 className="text-2xl font-bold text-slate-100 mb-1">

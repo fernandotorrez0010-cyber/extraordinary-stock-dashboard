@@ -28,7 +28,12 @@ export default function ForgotPasswordPage() {
     <div className="min-h-screen bg-[#0a0c12] flex items-center justify-center p-6">
       <div className="w-full max-w-sm">
         <div className="flex items-center gap-3 mb-6">
-            <img src='/logo.png' alt='logo' height={250} width={250}/>
+<div className="flex items-center gap-3 mb-6">
+            <div className="w-12 h-12 rounded-2xl bg-green-500/10 border border-green-500/20 flex items-center justify-center">
+              <TrendingUp size={24} className="text-green-400" />
+            </div>
+            <span className="text-2xl font-bold text-slate-100">Ultimate Global Stock Marketing</span>
+          </div>
           </div>
 
         {sent ? (
