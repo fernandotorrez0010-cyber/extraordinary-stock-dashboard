@@ -66,10 +66,17 @@ export default function DashboardHome() {
       <div className="gradient-border rounded-2xl p-5 flex items-center justify-between">
         <div>
           <p className="text-slate-400 text-sm">Good day,</p>
-          <h2 className="text-xl font-bold text-slate-100 mt-0.5">{profile?.name} 👋</h2>
-          <p className="text-xs text-slate-500 mt-1">Here's your portfolio overview</p>
+          <h2 className="text-xl font-bold text-slate-100 mt-0.5">
+            {profile?.name} 👋
+          </h2>
+          <p className="text-xs text-slate-500 mt-1">
+            Here's your portfolio overview
+          </p>
         </div>
-        <Link to="/dashboard/deposit" className="btn-primary text-sm py-2.5 px-5 hidden sm:flex">
+        <Link
+          to="/deposit"
+          className="btn-primary text-sm py-2.5 px-5 hidden sm:flex"
+        >
           Add Funds <ArrowUpRight size={15} />
         </Link>
       </div>
@@ -77,24 +84,36 @@ export default function DashboardHome() {
       {/* Stats grid */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <StatCard
-          icon={DollarSign} label="Total Balance" color="green"
+          icon={DollarSign}
+          label="Total Balance"
+          color="green"
           value={formatCurrency(profile?.balance || 0)}
           sub="Available to withdraw"
         />
         <StatCard
-          icon={TrendingUp} label="Total Profit" color="blue"
+          icon={TrendingUp}
+          label="Total Profit"
+          color="blue"
           value={formatCurrency(profile?.profit || 0)}
           sub="All time earnings"
         />
         <StatCard
-          icon={BarChart2} label="Total Invested" color="purple"
+          icon={BarChart2}
+          label="Total Invested"
+          color="purple"
           value={formatCurrency(profile?.totalInvested || 0)}
           sub="Cumulative deposits"
         />
         <StatCard
-          icon={Activity} label="Active Plan" color="orange"
-          value={activeInvestment ? activeInvestment.planName : 'None'}
-          sub={activeInvestment ? `${formatCurrency(activeInvestment.amount)} invested` : 'Invest to start earning'}
+          icon={Activity}
+          label="Active Plan"
+          color="orange"
+          value={activeInvestment ? activeInvestment.planName : "None"}
+          sub={
+            activeInvestment
+              ? `${formatCurrency(activeInvestment.amount)} invested`
+              : "Invest to start earning"
+          }
         />
       </div>
 
@@ -115,32 +134,67 @@ export default function DashboardHome() {
                   <stop offset="95%" stopColor="#22c55e" stopOpacity={0} />
                 </linearGradient>
               </defs>
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(148,163,184,0.07)" />
-              <XAxis dataKey="day" tick={{ fill: '#64748b', fontSize: 11 }} axisLine={false} tickLine={false} />
-              <YAxis tick={{ fill: '#64748b', fontSize: 11 }} axisLine={false} tickLine={false}
-                tickFormatter={v => `$${v}`} />
+              <CartesianGrid
+                strokeDasharray="3 3"
+                stroke="rgba(148,163,184,0.07)"
+              />
+              <XAxis
+                dataKey="day"
+                tick={{ fill: "#64748b", fontSize: 11 }}
+                axisLine={false}
+                tickLine={false}
+              />
+              <YAxis
+                tick={{ fill: "#64748b", fontSize: 11 }}
+                axisLine={false}
+                tickLine={false}
+                tickFormatter={(v) => `$${v}`}
+              />
               <Tooltip content={<CustomTooltip />} />
-              <Area type="monotone" dataKey="profit" stroke="#22c55e" strokeWidth={2}
-                fill="url(#profitGrad)" dot={false} activeDot={{ r: 4, fill: '#22c55e' }} />
+              <Area
+                type="monotone"
+                dataKey="profit"
+                stroke="#22c55e"
+                strokeWidth={2}
+                fill="url(#profitGrad)"
+                dot={false}
+                activeDot={{ r: 4, fill: "#22c55e" }}
+              />
             </AreaChart>
           </ResponsiveContainer>
         </div>
 
         <div className="card p-5">
-          <h3 className="font-semibold text-slate-200 mb-4">Active Investment</h3>
+          <h3 className="font-semibold text-slate-200 mb-4">
+            Active Investment
+          </h3>
           {activeInvestment ? (
             <div className="space-y-4">
               <div className="p-4 rounded-xl bg-green-500/5 border border-green-500/20">
-                <p className="text-lg font-bold text-green-400">{activeInvestment.planName}</p>
+                <p className="text-lg font-bold text-green-400">
+                  {activeInvestment.planName}
+                </p>
                 <p className="text-xs text-slate-500 mt-0.5">Current plan</p>
               </div>
               {[
-                { label: 'Amount', value: formatCurrency(activeInvestment.amount) },
-                { label: 'ROI', value: `${activeInvestment.roiPercent}%` },
-                { label: 'Profit Earned', value: formatCurrency(activeInvestment.profit) },
-                { label: 'Status', value: <Badge status={activeInvestment.status} /> },
+                {
+                  label: "Amount",
+                  value: formatCurrency(activeInvestment.amount),
+                },
+                { label: "ROI", value: `${activeInvestment.roiPercent}%` },
+                {
+                  label: "Profit Earned",
+                  value: formatCurrency(activeInvestment.profit),
+                },
+                {
+                  label: "Status",
+                  value: <Badge status={activeInvestment.status} />,
+                },
               ].map(({ label, value }) => (
-                <div key={label} className="flex justify-between items-center text-sm">
+                <div
+                  key={label}
+                  className="flex justify-between items-center text-sm"
+                >
                   <span className="text-slate-500">{label}</span>
                   <span className="text-slate-200 font-medium">{value}</span>
                 </div>
@@ -151,8 +205,10 @@ export default function DashboardHome() {
               <div className="p-4 rounded-2xl bg-slate-800/50 mb-3">
                 <TrendingUp size={24} className="text-slate-500" />
               </div>
-              <p className="text-sm text-slate-400 mb-4">No active investment</p>
-              <Link to="/dashboard/investments" className="btn-primary text-sm py-2">
+              <p className="text-sm text-slate-400 mb-4">
+                No active investment
+              </p>
+              <Link to="/investments" className="btn-primary text-sm py-2">
                 Browse Plans
               </Link>
             </div>
@@ -165,31 +221,47 @@ export default function DashboardHome() {
         <div className="card p-5">
           <div className="flex items-center justify-between mb-4">
             <h3 className="font-semibold text-slate-200">Recent Trades</h3>
-            <Link to="/dashboard/trades" className="text-xs text-green-400 hover:text-green-300 flex items-center gap-1">
+            <Link
+              to="/trades"
+              className="text-xs text-green-400 hover:text-green-300 flex items-center gap-1"
+            >
               View all <ChevronRight size={13} />
             </Link>
           </div>
           {recentTrades.length === 0 ? (
-            <p className="text-sm text-slate-500 text-center py-8">No trades yet</p>
+            <p className="text-sm text-slate-500 text-center py-8">
+              No trades yet
+            </p>
           ) : (
             <div className="space-y-2">
-              {recentTrades.map(trade => (
-                <div key={trade.id} className="flex items-center justify-between p-3 rounded-xl hover:bg-slate-800/40 transition-colors">
+              {recentTrades.map((trade) => (
+                <div
+                  key={trade.id}
+                  className="flex items-center justify-between p-3 rounded-xl hover:bg-slate-800/40 transition-colors"
+                >
                   <div className="flex items-center gap-3">
-                    <div className={`p-1.5 rounded-lg ${trade.type === 'buy' ? 'bg-green-500/10' : 'bg-red-500/10'}`}>
-                      {trade.type === 'buy'
-                        ? <ArrowUpRight size={14} className="text-green-400" />
-                        : <ArrowDownRight size={14} className="text-red-400" />
-                      }
+                    <div
+                      className={`p-1.5 rounded-lg ${trade.type === "buy" ? "bg-green-500/10" : "bg-red-500/10"}`}
+                    >
+                      {trade.type === "buy" ? (
+                        <ArrowUpRight size={14} className="text-green-400" />
+                      ) : (
+                        <ArrowDownRight size={14} className="text-red-400" />
+                      )}
                     </div>
                     <div>
-                      <p className="text-sm font-semibold text-slate-200">{trade.symbol}</p>
+                      <p className="text-sm font-semibold text-slate-200">
+                        {trade.symbol}
+                      </p>
                       <Badge status={trade.type} />
                     </div>
                   </div>
                   <div className="text-right">
-                    <p className={`text-sm font-bold ${(trade.profit || 0) >= 0 ? 'text-green-400' : 'text-red-400'}`}>
-                      {(trade.profit || 0) >= 0 ? '+' : ''}{formatCurrency(trade.profit || 0)}
+                    <p
+                      className={`text-sm font-bold ${(trade.profit || 0) >= 0 ? "text-green-400" : "text-red-400"}`}
+                    >
+                      {(trade.profit || 0) >= 0 ? "+" : ""}
+                      {formatCurrency(trade.profit || 0)}
                     </p>
                     <p className="text-xs text-slate-500">{trade.status}</p>
                   </div>
@@ -201,23 +273,39 @@ export default function DashboardHome() {
 
         <div className="card p-5">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="font-semibold text-slate-200">Recent Transactions</h3>
-            <Link to="/dashboard/transactions" className="text-xs text-green-400 hover:text-green-300 flex items-center gap-1">
+            <h3 className="font-semibold text-slate-200">
+              Recent Transactions
+            </h3>
+            <Link
+              to="/transactions"
+              className="text-xs text-green-400 hover:text-green-300 flex items-center gap-1"
+            >
               View all <ChevronRight size={13} />
             </Link>
           </div>
           {recentTxs.length === 0 ? (
-            <p className="text-sm text-slate-500 text-center py-8">No transactions yet</p>
+            <p className="text-sm text-slate-500 text-center py-8">
+              No transactions yet
+            </p>
           ) : (
             <div className="space-y-2">
-              {recentTxs.map(tx => (
-                <div key={tx.id} className="flex items-center justify-between p-3 rounded-xl hover:bg-slate-800/40 transition-colors">
+              {recentTxs.map((tx) => (
+                <div
+                  key={tx.id}
+                  className="flex items-center justify-between p-3 rounded-xl hover:bg-slate-800/40 transition-colors"
+                >
                   <div>
-                    <p className="text-sm font-semibold text-slate-200 capitalize">{tx.type}</p>
-                    <p className="text-xs text-slate-500">{formatDateTime(tx.createdAt)}</p>
+                    <p className="text-sm font-semibold text-slate-200 capitalize">
+                      {tx.type}
+                    </p>
+                    <p className="text-xs text-slate-500">
+                      {formatDateTime(tx.createdAt)}
+                    </p>
                   </div>
                   <div className="text-right">
-                    <p className="text-sm font-bold text-slate-200">{formatCurrency(tx.amount)}</p>
+                    <p className="text-sm font-bold text-slate-200">
+                      {formatCurrency(tx.amount)}
+                    </p>
                     <Badge status={tx.status} />
                   </div>
                 </div>

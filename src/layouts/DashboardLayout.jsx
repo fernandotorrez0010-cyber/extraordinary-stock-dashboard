@@ -6,19 +6,19 @@ import Topbar from '../components/layout/Topbar';
 import MarketTicker from '../components/layout/MarketTicker';
 
 const titles = {
-  '/dashboard': 'Overview',
-  '/dashboard/investments': 'Investments',
-  '/dashboard/trades': 'Trade History',
-  '/dashboard/wallet': 'Wallet',
-  '/dashboard/deposit': 'Deposit Funds',
-  '/dashboard/withdraw': 'Withdraw Funds',
-  '/dashboard/transactions': 'Transactions',
-  '/dashboard/referral': 'Referral Program',
-  '/dashboard/profile': 'My Profile',
-  '/dashboard/kyc': 'KYC Verification',
-  '/dashboard/tickets': 'Support Tickets',
-  '/dashboard/notifications': 'Notifications',
-  '/dashboard/markets': 'Live Markets',
+  "/": "Overview",
+  "/investments": "Investments",
+  "/trades": "Trade History",
+  "/wallet": "Wallet",
+  "/deposit": "Deposit Funds",
+  "/withdraw": "Withdraw Funds",
+  "/transactions": "Transactions",
+  "/referral": "Referral Program",
+  "/profile": "My Profile",
+  "/kyc": "KYC Verification",
+  "/tickets": "Support Tickets",
+  "/notifications": "Notifications",
+  "/markets": "Live Markets",
 };
 
 export default function DashboardLayout() {

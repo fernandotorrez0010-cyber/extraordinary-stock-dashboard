@@ -10,32 +10,32 @@ export default function WalletPage() {
 
   const actions = [
     {
-      to: '/dashboard/deposit',
+      to: "/deposit",
       icon: ArrowDownCircle,
-      label: 'Deposit',
-      desc: 'Add funds to your wallet',
-      color: 'text-green-400 bg-green-400/10 border-green-400/20',
+      label: "Deposit",
+      desc: "Add funds to your wallet",
+      color: "text-green-400 bg-green-400/10 border-green-400/20",
     },
     {
-      to: '/dashboard/withdraw',
+      to: "/withdraw",
       icon: ArrowUpCircle,
-      label: 'Withdraw',
-      desc: 'Withdraw to your bank/crypto',
-      color: 'text-orange-400 bg-orange-400/10 border-orange-400/20',
+      label: "Withdraw",
+      desc: "Withdraw to your bank/crypto",
+      color: "text-orange-400 bg-orange-400/10 border-orange-400/20",
     },
     {
-      to: '/dashboard/transactions',
+      to: "/transactions",
       icon: Receipt,
-      label: 'Transactions',
-      desc: 'View all transaction history',
-      color: 'text-blue-400 bg-blue-400/10 border-blue-400/20',
+      label: "Transactions",
+      desc: "View all transaction history",
+      color: "text-blue-400 bg-blue-400/10 border-blue-400/20",
     },
     {
-      to: '/dashboard/investments',
+      to: "/investments",
       icon: TrendingUp,
-      label: 'Invest',
-      desc: 'Grow your balance with plans',
-      color: 'text-purple-400 bg-purple-400/10 border-purple-400/20',
+      label: "Invest",
+      desc: "Grow your balance with plans",
+      color: "text-purple-400 bg-purple-400/10 border-purple-400/20",
     },
   ];
 

@@ -10,22 +10,22 @@ import { logoutUser } from '../../firebase/authService';
 import toast from 'react-hot-toast';
 
 const userNav = [
-  { to: '/dashboard', icon: LayoutDashboard, label: 'Overview', end: true },
-  { to: '/dashboard/investments', icon: TrendingUp, label: 'Investments' },
-  { to: '/dashboard/trades', icon: BarChart2, label: 'Trades' },
-  { to: '/dashboard/markets', icon: Globe2, label: 'Live Markets' },
-  { to: '/dashboard/wallet', icon: Wallet, label: 'Wallet' },
-  { to: '/dashboard/deposit', icon: ArrowDownCircle, label: 'Deposit' },
-  { to: '/dashboard/withdraw', icon: ArrowUpCircle, label: 'Withdraw' },
-  { to: '/dashboard/transactions', icon: Receipt, label: 'Transactions' },
-  { to: '/dashboard/referral', icon: Gift, label: 'Referral' },
-  { to: '/dashboard/notifications', icon: Bell, label: 'Notifications' },
+  { to: "/", icon: LayoutDashboard, label: "Overview", end: true },
+  { to: "/investments", icon: TrendingUp, label: "Investments" },
+  { to: "/trades", icon: BarChart2, label: "Trades" },
+  { to: "/markets", icon: Globe2, label: "Live Markets" },
+  { to: "/wallet", icon: Wallet, label: "Wallet" },
+  { to: "/deposit", icon: ArrowDownCircle, label: "Deposit" },
+  { to: "/withdraw", icon: ArrowUpCircle, label: "Withdraw" },
+  { to: "/transactions", icon: Receipt, label: "Transactions" },
+  { to: "/referral", icon: Gift, label: "Referral" },
+  { to: "/notifications", icon: Bell, label: "Notifications" },
 ];
 
 const accountNav = [
-  { to: '/dashboard/profile', icon: User, label: 'Profile' },
-  { to: '/dashboard/kyc', icon: FileCheck, label: 'KYC Verification' },
-  { to: '/dashboard/tickets', icon: MessageSquare, label: 'Support' },
+  { to: "/profile", icon: User, label: "Profile" },
+  { to: "/kyc", icon: FileCheck, label: "KYC Verification" },
+  { to: "/tickets", icon: MessageSquare, label: "Support" },
 ];
 
 export default function Sidebar({ onClose }) {
