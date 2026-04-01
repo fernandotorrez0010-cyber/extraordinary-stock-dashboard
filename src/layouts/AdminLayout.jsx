@@ -57,10 +57,15 @@ function AdminSidebar({ onClose }) {
           <div className="w-12 h-12 rounded-2xl bg-green-500/10 border border-green-500/20 flex items-center justify-center">
             <TrendingUp size={24} className="text-green-400" />
           </div>
-          <span className="text-lg font-bold text-slate-100">Ultimate Global</span>
+          <span className="text-lg font-bold text-slate-100">
+            Ultimate Global
+          </span>
         </div>
         {onClose && (
-          <button onClick={onClose} className="p-1 rounded-lg hover:bg-slate-800 text-slate-500 lg:hidden">
+          <button
+            onClick={onClose}
+            className="p-1 rounded-lg hover:bg-slate-800 text-slate-500 lg:hidden"
+          >
             <X size={16} />
           </button>
         )}
@@ -69,33 +74,43 @@ function AdminSidebar({ onClose }) {
       <div className="px-4 py-4 border-b border-slate-800/60">
         <div className="flex items-center gap-3 p-3 rounded-xl bg-blue-500/10 border border-blue-500/20">
           <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center text-white font-bold text-sm">
-            {profile?.name?.[0]?.toUpperCase() || 'A'}
+            {profile?.name?.[0]?.toUpperCase() || "A"}
           </div>
           <div className="min-w-0">
-            <p className="text-sm font-semibold text-slate-200 truncate">{profile?.name}</p>
-            <span className="text-[10px] font-semibold text-blue-400 bg-blue-400/10 px-1.5 py-0.5 rounded">ADMIN</span>
+            <p className="text-sm font-semibold text-slate-200 truncate">
+              {profile?.name}
+            </p>
+            <span className="text-[10px] font-semibold text-blue-400 bg-blue-400/10 px-1.5 py-0.5 rounded">
+              ADMIN
+            </span>
           </div>
         </div>
       </div>
 
       <nav className="flex-1 px-3 py-4 space-y-0.5 overflow-y-auto">
         {adminNav.map(({ to, icon: Icon, label, end }) => (
-          <NavLink key={to} to={to} end={end}
+          <NavLink
+            key={to}
+            to={to}
+            end={end}
             className={({ isActive }) =>
               `flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ${
                 isActive
-                  ? 'text-blue-400 bg-blue-500/10'
-                  : 'text-slate-400 hover:text-slate-100 hover:bg-white/[0.06]'
+                  ? "text-blue-400 bg-blue-500/10"
+                  : "text-slate-400 hover:text-slate-100 hover:bg-white/[0.06]"
               }`
             }
-            onClick={onClose}>
+            onClick={onClose}
+          >
             <Icon size={17} />
             <span>{label}</span>
           </NavLink>
         ))}
         <div className="pt-2 border-t border-slate-800/60 mt-2">
-          <NavLink to="/dashboard"
-            className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-slate-400 hover:text-slate-100 hover:bg-white/[0.06] transition-all duration-200">
+          <NavLink
+            to="/"
+            className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-slate-400 hover:text-slate-100 hover:bg-white/[0.06] transition-all duration-200"
+          >
             <ChevronLeft size={17} />
             <span>User Dashboard</span>
           </NavLink>
@@ -103,8 +118,10 @@ function AdminSidebar({ onClose }) {
       </nav>
 
       <div className="p-3 border-t border-slate-800/60">
-        <button onClick={handleLogout}
-          className="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-red-400 hover:text-red-300 hover:bg-red-500/10 transition-all duration-200">
+        <button
+          onClick={handleLogout}
+          className="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-red-400 hover:text-red-300 hover:bg-red-500/10 transition-all duration-200"
+        >
           <LogOut size={17} />
           <span>Sign Out</span>
         </button>

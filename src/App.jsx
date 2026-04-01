@@ -46,15 +46,19 @@ import AdminRoute from './components/AdminRoute';
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/dashboard">
       <AuthProvider>
         <MarketProvider>
           <Toaster
             position="top-right"
             toastOptions={{
-              style: { background: '#1a1d27', color: '#e2e8f0', border: '1px solid rgba(148,163,184,0.1)' },
-              success: { iconTheme: { primary: '#22c55e', secondary: '#000' } },
-              error: { iconTheme: { primary: '#ef4444', secondary: '#fff' } },
+              style: {
+                background: "#1a1d27",
+                color: "#e2e8f0",
+                border: "1px solid rgba(148,163,184,0.1)",
+              },
+              success: { iconTheme: { primary: "#22c55e", secondary: "#000" } },
+              error: { iconTheme: { primary: "#ef4444", secondary: "#fff" } },
             }}
           />
           <Routes>
@@ -65,7 +69,14 @@ export default function App() {
             <Route path="/forgot-password" element={<ForgotPasswordPage />} />
 
             {/* User dashboard */}
-            <Route path="/dashboard" element={<ProtectedRoute><DashboardLayout /></ProtectedRoute>}>
+            <Route
+              path="/"
+              element={
+                <ProtectedRoute>
+                  <DashboardLayout />
+                </ProtectedRoute>
+              }
+            >
               <Route index element={<DashboardHome />} />
               <Route path="investments" element={<InvestmentsPage />} />
               <Route path="trades" element={<TradesPage />} />
@@ -82,7 +93,14 @@ export default function App() {
             </Route>
 
             {/* Admin */}
-            <Route path="/admin" element={<AdminRoute><AdminLayout /></AdminRoute>}>
+            <Route
+              path="/admin"
+              element={
+                <AdminRoute>
+                  <AdminLayout />
+                </AdminRoute>
+              }
+            >
               <Route index element={<AdminDashboard />} />
               <Route path="users" element={<AdminUsersPage />} />
               <Route path="plans" element={<AdminPlansPage />} />
@@ -93,8 +111,14 @@ export default function App() {
               <Route path="transactions" element={<AdminTransactionsPage />} />
               <Route path="kyc" element={<AdminKYCPage />} />
               <Route path="tickets" element={<AdminTicketsPage />} />
-              <Route path="notifications" element={<AdminNotificationsPage />} />
-              <Route path='crypto-methods' element={<AdminCryptoMethodsPage/>}/>
+              <Route
+                path="notifications"
+                element={<AdminNotificationsPage />}
+              />
+              <Route
+                path="crypto-methods"
+                element={<AdminCryptoMethodsPage />}
+              />
             </Route>
 
             <Route path="*" element={<Navigate to="/login" replace />} />

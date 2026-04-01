@@ -30,7 +30,9 @@ export default function RegisterPage() {
     setLoading(true);
     try {
       await registerUser({ name: form.name, email: form.email, password: form.password });
-      toast.success('Account created! Welcome to TradePro.');
+      toast.success(
+        "Account created! Welcome to Ultimate Global Stock Marketing.",
+      );
       navigate('/dashboard');
     } catch (err) {
       toast.error(err.code === 'auth/email-already-in-use' ? 'Email already registered' : err.message);
