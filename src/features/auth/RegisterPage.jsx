@@ -31,9 +31,9 @@ export default function RegisterPage() {
     try {
       await registerUser({ name: form.name, email: form.email, password: form.password });
       toast.success(
-        "Account created! Welcome to Ultimate Global Stock Marketing.",
+        "Account created! Welcome to Ultimate Global Stock Marketing. Login to continue",
       );
-      navigate('/dashboard');
+      navigate("/");
     } catch (err) {
       toast.error(err.code === 'auth/email-already-in-use' ? 'Email already registered' : err.message);
     } finally {

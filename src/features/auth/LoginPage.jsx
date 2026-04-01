@@ -24,7 +24,7 @@ export default function LoginPage() {
         return;
       }
       toast.success('Welcome back!');
-      navigate(profile?.role === 'admin' ? '/admin' : '/dashboard');
+      navigate(profile?.role === "admin" ? "/admin" : "/");
     } catch (err) {
       toast.error(err.code === 'auth/invalid-credential' ? 'Invalid email or password' : err.message);
     } finally {
