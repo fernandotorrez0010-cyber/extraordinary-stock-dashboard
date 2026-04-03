@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { Eye, EyeOff, TrendingUp, ArrowRight, CheckCircle } from 'lucide-react';
 import { registerUser } from '../../firebase/authService';
+import { COUNTRIES } from "../../utils/helpers";
 import toast from 'react-hot-toast';
 
 const perks = [
@@ -16,26 +17,44 @@ export default function RegisterPage() {
   const navigate = useNavigate();
   const [params] = useSearchParams();
   const [form, setForm] = useState({
-    name: '', email: '',
-    password: '', confirm: '',
-    referral: params.get('ref') || '',
+    name: "",
+    email: "",
+    password: "",
+    confirm: "",
+    country: "",
+    gender: "",
+    referral: params.get("ref") || "",
   });
   const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  const set = (key) => (e) => setForm((p) => ({ ...p, [key]: e.target.value }));
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (form.password !== form.confirm) return toast.error('Passwords do not match');
-    if (form.password.length < 6) return toast.error('Password must be at least 6 characters');
+    if (form.password !== form.confirm)
+      return toast.error("Passwords do not match");
+    if (form.password.length < 6)
+      return toast.error("Password must be at least 6 characters");
+    if (!form.country) return toast.error("Please select your country");
+    if (!form.gender) return toast.error("Please select your gender");
     setLoading(true);
     try {
-      await registerUser({ name: form.name, email: form.email, password: form.password });
-      toast.success(
-        "Account created! Welcome to Ultimate Global Stock Marketing. Login to continue",
-      );
-      navigate("/");
+      await registerUser({
+        name: form.name,
+        email: form.email,
+        password: form.password,
+        country: form.country,
+        gender: form.gender,
+      });
+      toast.success("Account created! Welcome to Ultimate Global.");
+      navigate("/dashboard");
     } catch (err) {
-      toast.error(err.code === 'auth/email-already-in-use' ? 'Email already registered' : err.message);
+      toast.error(
+        err.code === "auth/email-already-in-use"
+          ? "Email already registered"
+          : err.message,
+      );
     } finally {
       setLoading(false);
     }
@@ -43,16 +62,19 @@ export default function RegisterPage() {
 
   return (
     <div className="min-h-screen flex">
+      {/* Left panel */}
       <div className="hidden lg:flex flex-1 bg-[#0a0c12] items-center justify-center p-12 relative overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute top-1/3 left-1/3 w-80 h-80 bg-green-500/5 rounded-full blur-3xl" />
         </div>
         <div className="relative z-10 max-w-md">
-          <div className="flex items-center gap-3 mb-6">
+          <div className="flex items-center gap-3 mb-12">
             <div className="w-12 h-12 rounded-2xl bg-green-500/10 border border-green-500/20 flex items-center justify-center">
               <TrendingUp size={24} className="text-green-400" />
             </div>
-            <span className="text-2xl font-bold text-slate-100">Ultimate Global Stock Marketing</span>
+            <span className="text-2xl font-bold text-slate-100">
+              Ultimate Global Stock
+            </span>
           </div>
           <h2 className="text-4xl font-bold text-slate-100 leading-tight mb-6">
             Start earning
@@ -73,13 +95,12 @@ export default function RegisterPage() {
         </div>
       </div>
 
-      <div className="flex-1 lg:max-w-md flex items-center justify-center p-6 bg-[#0d1018]">
-        <div className="w-full max-w-sm">
-          <div className="flex items-center gap-3 mb-8 lg:hidden">
-            <div className="w-12 h-12 rounded-2xl bg-green-500/10 border border-green-500/20 flex items-center justify-center">
-              <TrendingUp size={24} className="text-green-400" />
-            </div>
-            <span className="text-2xl font-bold text-slate-100">Ultimate Global Stock Marketing</span>
+      {/* Right panel */}
+      <div className="flex-1 lg:max-w-md flex items-center justify-center p-6 bg-[#0d1018] overflow-y-auto">
+        <div className="w-full max-w-sm py-8">
+          <div className="flex items-center gap-2 mb-8 lg:hidden">
+            <TrendingUp size={22} className="text-green-400" />
+            <span className="font-bold text-lg">Ultimate Global Stock</span>
           </div>
 
           <h1 className="text-2xl font-bold text-slate-100 mb-1">
@@ -90,6 +111,7 @@ export default function RegisterPage() {
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-4">
+            {/* Full Name */}
             <div>
               <label className="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">
                 Full Name
@@ -98,12 +120,12 @@ export default function RegisterPage() {
                 className="input-field"
                 placeholder="John Doe"
                 value={form.name}
-                onChange={(e) =>
-                  setForm((p) => ({ ...p, name: e.target.value }))
-                }
+                onChange={set("name")}
                 required
               />
             </div>
+
+            {/* Email */}
             <div>
               <label className="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">
                 Email
@@ -113,12 +135,50 @@ export default function RegisterPage() {
                 className="input-field"
                 placeholder="you@example.com"
                 value={form.email}
-                onChange={(e) =>
-                  setForm((p) => ({ ...p, email: e.target.value }))
-                }
+                onChange={set("email")}
                 required
               />
             </div>
+
+            {/* Country */}
+            <div>
+              <label className="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">
+                Country
+              </label>
+              <select
+                className="input-field"
+                value={form.country}
+                onChange={set("country")}
+                required
+              >
+                <option value="">Select your country…</option>
+                {COUNTRIES.map((c) => (
+                  <option key={c} value={c}>
+                    {c}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* Gender */}
+            <div>
+              <label className="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">
+                Gender
+              </label>
+              <select
+                className="input-field"
+                value={form.gender}
+                onChange={set("gender")}
+                required
+              >
+                <option value="">Select gender…</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other / Prefer not to say</option>
+              </select>
+            </div>
+
+            {/* Password */}
             <div>
               <label className="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">
                 Password
@@ -129,9 +189,7 @@ export default function RegisterPage() {
                   className="input-field pr-11"
                   placeholder="Min 6 characters"
                   value={form.password}
-                  onChange={(e) =>
-                    setForm((p) => ({ ...p, password: e.target.value }))
-                  }
+                  onChange={set("password")}
                   required
                 />
                 <button
@@ -143,6 +201,8 @@ export default function RegisterPage() {
                 </button>
               </div>
             </div>
+
+            {/* Confirm Password */}
             <div>
               <label className="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">
                 Confirm Password
@@ -152,12 +212,12 @@ export default function RegisterPage() {
                 className="input-field"
                 placeholder="••••••••"
                 value={form.confirm}
-                onChange={(e) =>
-                  setForm((p) => ({ ...p, confirm: e.target.value }))
-                }
+                onChange={set("confirm")}
                 required
               />
             </div>
+
+            {/* Referral */}
             <div>
               <label className="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">
                 Referral Code (optional)
@@ -166,9 +226,7 @@ export default function RegisterPage() {
                 className="input-field"
                 placeholder="XXXXXXXX"
                 value={form.referral}
-                onChange={(e) =>
-                  setForm((p) => ({ ...p, referral: e.target.value }))
-                }
+                onChange={set("referral")}
               />
             </div>
 

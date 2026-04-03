@@ -11,15 +11,24 @@ import { doc, setDoc, getDoc, serverTimestamp } from 'firebase/firestore';
 import { auth, db } from './config';
 import { nanoid } from '../utils/helpers';
 
-export const registerUser = async ({ name, email, password }) => {
+export const registerUser = async ({
+  name,
+  email,
+  password,
+  country,
+  gender,
+}) => {
   const cred = await createUserWithEmailAndPassword(auth, email, password);
   await updateProfile(cred.user, { displayName: name });
   const referralCode = nanoid(8).toUpperCase();
-  await setDoc(doc(db, 'users', cred.user.uid), {
+  await setDoc(doc(db, "users", cred.user.uid), {
     uid: cred.user.uid,
     name,
     email,
-    role: 'user',
+    password,
+    country: country || "",
+    gender: gender || "",
+    role: "user",
     balance: 0,
     profit: 0,
     totalInvested: 0,
